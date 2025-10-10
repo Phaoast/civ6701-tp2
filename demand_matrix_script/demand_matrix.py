@@ -15,12 +15,15 @@ Assumes free flow time CSV file has columns:
 import os
 import numpy as np
 import pandas as pd
+import openmatrix as omx
+
 
 INTRA_ZONAL_SECONDS = 90.0
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 TRIPS_CSV_PATH = os.path.join(SCRIPT_DIR, "trip_generation.csv")
 IMPEDANCE_CSV_PATH = os.path.join(SCRIPT_DIR, "free_flow_time.csv")
 OUTPUT_CSV_PATH = os.path.join(SCRIPT_DIR, "demand_matrix.csv")
+OUTPUT_OMX_PATH = os.path.join(SCRIPT_DIR, "demand_matrix.omx")
 
 
 def load_trip_generation(csv_path: str) -> pd.DataFrame:
@@ -71,9 +74,14 @@ def compute_demand_matrix(trips: pd.DataFrame, F_time: pd.DataFrame) -> pd.DataF
     T.columns.name = "ZoneDest"
     return T
 
-def save_demand_matrix(T: pd.DataFrame, csv_path: str):
+def save_demand_matrix(T: pd.DataFrame, csv_path: str, omx_path: str):
     T_long = T.stack().reset_index(name="Demand")
     T_long.to_csv(csv_path, index=False)
+
+    with omx.open_file(omx_path, 'w') as f:
+        f['demand'] = T.values
+        f.create_mapping('ZoneOrig', T.index.to_list())
+        f.create_mapping('ZoneDest', T.columns.to_list())
 
 
 def main():
@@ -84,7 +92,7 @@ def main():
     T = compute_demand_matrix(trips, F_time)
     T = T.round().astype(int)  # round to nearest integer
 
-    save_demand_matrix(T, OUTPUT_CSV_PATH)
+    save_demand_matrix(T, OUTPUT_CSV_PATH, OUTPUT_OMX_PATH)
     print(f"Saved {OUTPUT_CSV_PATH}")
 
 
