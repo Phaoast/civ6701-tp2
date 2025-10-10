@@ -1,0 +1,16 @@
+centroid_id,zone_name,households,population,jobs,productions,attractions
+1,"Mettray, N-D d’Oé, Chanceaux-sur-Choisille",4500,9000,2000,9000,4000
+2,"Parcay-Meslay, A10 Nord",5000,10000,2000,10000,4000
+3,"Saint-Pierre-des-Corps, Rochecorbon",8500,17000,9000,17000,18000
+4,La Membrolle-sur-Choisille (et nord-ouest),2500,5000,2000,5000,4000
+5,Saint-Cyr-sur-Loire,7500,15000,6000,15000,12000
+6,Tours Nord,11000,22000,15000,22000,30000
+7,Fondettes,5000,10000,3000,10000,6000
+8,Tours centre,25500,48000,39000,48000,78000
+9,Saint-Avertin,6500,13000,4000,13000,8000
+10,Tours Sud,25500,47000,25000,47000,50000
+11,La Riche,4500,9000,3000,9000,6000
+12,"Joué-lès-Tours sud-ouest, Ballan-Miré",8000,16000,5000,16000,10000
+13,"Chambray Ouest, Montbazon, Veigné, A10 Sud",9500,19000,9000,19000,18000
+14,"Chambray Est, Esvres, Cormery",8000,16000,7000,16000,14000
+15,Joué-lès-Tours nord,12000,24000,9000,24000,18000
