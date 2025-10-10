@@ -61,7 +61,7 @@ def compute_demand_matrix(trips: pd.DataFrame, F_time: pd.DataFrame) -> pd.DataF
     productions = trips.set_index("centroid_id")["productions"].astype(float)
     attractions = trips.set_index("centroid_id")["attractions"].astype(float)
 
-    F_imp = 1.0 / (F_time, 1e-9 ** 2)
+    F_imp = 1.0 / (F_time ** 2)
 
     AF = F_imp.mul(attractions, axis=1)
     denom = AF.sum(axis=1)
