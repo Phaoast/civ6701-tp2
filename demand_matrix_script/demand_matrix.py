@@ -90,7 +90,6 @@ def main():
 
     F_time = load_free_flow_time(IMPEDANCE_CSV_PATH, zones, INTRA_ZONAL_SECONDS)
     T = compute_demand_matrix(trips, F_time)
-    T = T.round().astype(int)  # round to nearest integer
 
     save_demand_matrix(T, OUTPUT_CSV_PATH, OUTPUT_OMX_PATH)
     print(f"Saved {OUTPUT_CSV_PATH}")
